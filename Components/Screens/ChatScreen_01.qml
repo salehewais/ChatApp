@@ -7,8 +7,6 @@ Component {
     id: mainComponent
     Rectangle {
         anchors.fill: parent
-        color: 'yellow'
-
-
+        color: 'green'
     }
 }
