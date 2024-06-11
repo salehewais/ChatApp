@@ -3,5 +3,6 @@ module Screens
 ChatScrren 1.0 ChatScreen_01.qml
 SettingScreen 1.0 SettingScreen_01.qml
 ContactListScreen 1.0 ContactListScreen_01.qml
+ScreenContainer 1.0 ScreenContainer_01.qml
 
 

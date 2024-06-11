@@ -10,21 +10,22 @@ Window {
     visible: true
     title: qsTr("ChatApp")
     color:'#627254'
-    Loader{
-        id:mainLoader
+
+    ScreenContainer{
+        id:screenContainer
         width: parent.width
         height: parent.height - toolBar.height
+        chatScreen:ChatScrren{}
+        settingScreen:SettingScreen{}
+        chatListScreen:ContactListScreen{}
     }
+
     Rectangle{
         id:toolBar
         height: 80
         width: parent.width
         color:"#76885B"
         anchors.bottom: parent.bottom
-
-        ContactListScreen{
-            id:contactList
-        }
 
         IconButton{
             id:chatIcon
@@ -35,7 +36,7 @@ Window {
                 leftMargin: 80
             }
             onClicked: {
-                mainLoader.sourceComponent = contactList
+                screenContainer
             }
         }
         IconButton{

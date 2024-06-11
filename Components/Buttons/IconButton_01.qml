@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 
 Rectangle{
     id:iconButtonMain
@@ -22,6 +22,5 @@ Rectangle{
         }
         hoverEnabled: true
         cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
-
     }
 }

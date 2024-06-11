@@ -4,34 +4,32 @@ import Buttons 1.0
 import Screens 1.0
 import Contact 1.0
 
-Component {
+Rectangle {
     id: mainComponent
-    Rectangle {
-        ChatScrren{
-            id:chatScreen
-        }
-
+    anchors.fill: parent
+    color: 'transparent'
+    ListModel {
+        id:listModel
+        ListElement {imageIcon: "../../Assets/bill.jpg";contactName:'Bill Gets'}
+        ListElement {imageIcon: "../../Assets/Ellon.jpg";contactName:'Ellon Mask'}
+    }
+    ListView {
+        id:listView
         anchors.fill: parent
-        color: 'transparent'
-        ListModel {
-            id:listModel
-            ListElement {imageIcon: "../../Assets/bill.jpg";contactName:'Bill Gets'}
-            ListElement {imageIcon: "../../Assets/Ellon.jpg";contactName:'Ellon Mask'}
-        }
-        ListView {
-            id:listView
-            anchors.fill: parent
-            model: listModel
-            delegate: ContactRow{
-                iconImge: imageIcon
-                contactNameText:contactName
-                onClicked: {
-                    mainLoader.sourceComponent = chatScreen
-                }
+        model: listModel
+        delegate: ContactRow{
+            iconImge: imageIcon
+            contactNameText:contactName
+            onClicked: {
+                var component = mainComponent.parent.parent.chatScreen
+                var loader = mainComponent.parent
+                loader.sourceComponent = component
+                loader.item.contactImage = imageIcon
+                loader.item.contactName = contactName
             }
-            clip: true
-            spacing : 3
-            focus: true
         }
+        clip: true
+        spacing : 3
+        focus: true
     }
 }

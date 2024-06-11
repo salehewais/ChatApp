@@ -6,13 +6,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 list(APPEND QML_DIRS "${CMAKE_SOURCE_DIR}/Components")
 set(QML_IMPORT_PATH ${QML_DIRS} CACHE STRING "Addons" FORCE)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Network)
 
 qt_standard_project_setup()
 
 qt_add_executable(appChatApp
     main.cpp
     Assets.qrc
+    Controlles/database.h
+    Controlles/database.cpp
 )
 
 qt_add_qml_module(appChatApp
@@ -31,6 +33,7 @@ set_target_properties(appChatApp PROPERTIES
 
 target_link_libraries(appChatApp
     PRIVATE Qt6::Quick
+    PRIVATE Qt6::Network
 )
 
 install(TARGETS appChatApp
