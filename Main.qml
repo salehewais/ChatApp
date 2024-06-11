@@ -3,6 +3,7 @@ import QtQuick.Window
 import Buttons 1.0
 import Screens 1.0
 import Contact 1.0
+import QtQuick.Controls.Material 2.15
 
 Window {
     width: 410
@@ -14,14 +15,14 @@ Window {
     ScreenContainer{
         id:screenContainer
         width: parent.width
-        height: parent.height - toolBar.height
+        height: parent.height - bottomToolBar.height
         chatScreen:ChatScrren{}
         settingScreen:SettingScreen{}
         chatListScreen:ContactListScreen{}
     }
 
     Rectangle{
-        id:toolBar
+        id:bottomToolBar
         height: 80
         width: parent.width
         color:"#76885B"

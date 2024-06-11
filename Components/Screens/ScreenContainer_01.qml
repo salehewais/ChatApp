@@ -6,7 +6,7 @@ import Contact 1.0
 Rectangle{
     id:screenContainer
     anchors.fill: parent
-    color:'yellow'
+    color:'transparent'
     property Component chatScreen
     property Component settingScreen
     property Component chatListScreen
