@@ -4,6 +4,8 @@ import QtQuick.Controls 2.0
 import QtQuick.Window
 import Buttons 1.0
 import Contact 1.0
+import QtQml.Models 2.15
+
 
 Rectangle {
     id:chatMainScreen
@@ -76,7 +78,11 @@ Rectangle {
             right: chatMainScreen.right
             bottom: chatMainScreen.bottom
         }
-
+        ListModel {
+            id: listModel
+            ListElement { name: "Item 1"; sentByMe: 0}
+            ListElement { name: "Item 2"; sentByMe: 1}
+        }
         ListView {
             id: listView
             anchors{
@@ -92,27 +98,28 @@ Rectangle {
             displayMarginEnd: 40
             verticalLayoutDirection: ListView.BottomToTop
             spacing: 12
-            model: [1,2,3,4,5,6,7,8,9]
+            model: listModel
             delegate: Row {
-                readonly property bool sentByMe: index % 2 == 0
+//                readonly property bool sentByMe: sentByMe
                 anchors.right: sentByMe ? listView.contentItem.right : undefined
                 spacing: 6
-
                 Rectangle {
                     id: avatar
                     width: height
                     height: parent.height
                     color: "grey"
                     visible: !sentByMe
+                    radius: 20
                 }
 
                 Rectangle {
                     width: 80
-                    height: 40
+                    height: 30
+                    radius:5
                     color: sentByMe ? "lightgrey" : "steelblue"
                     Label {
                         anchors.centerIn: parent
-                        text: index
+                        text: name
                         color: sentByMe ? "black" : "white"
                     }
                 }
@@ -137,7 +144,6 @@ Rectangle {
 
             RowLayout {
                 width: parent.width
-
                 TextArea {
                     id: messageField
                     Layout.fillWidth: true
@@ -148,8 +154,12 @@ Rectangle {
                 Button {
                     id: sendButton
                     text: qsTr("Send")
-                    enabled: messageField.length > 0
+//                    enabled: messageField.length > 0
                     Layout.fillWidth: false
+                    onClicked: {
+//                        listModel.append({ name: "Saleh" })
+                        listModel.insert(0, { name: "Saleh", sentByMe: 1 })
+                    }
                 }
             }
         }
